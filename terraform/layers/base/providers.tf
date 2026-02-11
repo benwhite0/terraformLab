@@ -14,7 +14,7 @@ provider "aws" {
     tags = {
       Environment = var.environment
       Project     = var.project
-      CreatedBy   = var.createdBy
+      CreatedBy   = "Terraform"
     }
   }
 }

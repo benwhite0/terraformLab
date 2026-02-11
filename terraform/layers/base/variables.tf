@@ -9,9 +9,3 @@ variable "project" {
   type        = string
   default     = "terraformLab"
 }
-
-variable "createdBy" {
-  description = "The creator of the resources"
-  type        = string
-  default     = "Ben"
-}
