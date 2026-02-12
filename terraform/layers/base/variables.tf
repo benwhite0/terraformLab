@@ -7,5 +7,10 @@ variable "environment" {
 variable "project" {
   description = "The project to deploy the resources to"
   type        = string
-  default     = "terraformLab"
+}
+
+variable "vpc_cidr" {
+  description = "The CIDR block for the VPC"
+  type        = string
+  default     = "10.0.0.0/16"
 }
