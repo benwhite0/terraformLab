@@ -9,5 +9,3 @@ variable "project" {
   type        = string
   default     = "terraformLab"
 }
-
-variable "vpc_id" {}
