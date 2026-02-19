@@ -2,7 +2,7 @@
 resource "aws_security_group" "alb_sg" {
   name_prefix = "${var.project}-${var.environment}-alb-sg"
   description = "Security group for ALB ${var.project}-${var.environment}"
-  vpc_id      = data.aws_vpc.terraformLab-vpc.id
+  vpc_id      = data.aws_vpc.terraformLab_vpc.id
 }
 
 resource "aws_vpc_security_group_ingress_rule" "alb_http" {
@@ -33,8 +33,8 @@ module "alb" {
   source = "terraform-aws-modules/alb/aws"
 
   name    = "${var.project}-${var.environment}-alb"
-  vpc_id  = data.aws_vpc.terraformLab-vpc.id
-  subnets = data.aws_subnets.terraformLab-public-subnets.ids
+  vpc_id  = data.aws_vpc.terraformLab_vpc.id
+  subnets = data.aws_subnets.terraformLab_public_subnets.ids
 
   security_groups = [aws_security_group.alb_sg.id]
 
