@@ -29,31 +29,32 @@ resource "aws_vpc_security_group_egress_rule" "alb_all" {
   cidr_ipv4         = "0.0.0.0/0"
 }
 
-module "alb" {
+module "terraformLab_public_alb" {
   source = "terraform-aws-modules/alb/aws"
 
   name    = "${var.project}-${var.environment}-alb"
   vpc_id  = data.aws_vpc.terraformLab_vpc.id
   subnets = data.aws_subnets.terraformLab_public_subnets.ids
 
+  load_balancer_type = "application"
+
   security_groups = [aws_security_group.alb_sg.id]
 
-  target_groups = [
-
-    {
+  target_groups = {
+    web = {
       name        = "${var.project}-${var.environment}-alb-target-group"
       port        = 80
       protocol    = "HTTP"
       target_type = "instance"
       health_check = {
         path                = "/"
-        port                = 80
+        port                = "80"
         unhealthy_threshold = 3
         interval            = 60
         matcher             = "200"
       }
     }
-  ]
+  }
 
   listeners = {
     http = {
