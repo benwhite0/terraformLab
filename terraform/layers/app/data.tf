@@ -15,3 +15,7 @@ data "aws_subnets" "terraformLab_public_subnets" {
     values = ["${var.project}_${var.environment}_vpc_public_*"]
   }
 }
+
+data "aws_s3_bucket" "web_files_bucket" {
+  bucket = "${var.project}-${var.environment}-web-files"
+}
